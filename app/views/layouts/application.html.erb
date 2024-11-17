@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyBlog</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,10 +14,35 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/assets/custom.css">
+    <%= stylesheet_link_tag 'custom', media: 'all' %>
+
+    <!-- Font Awesome (Para ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- jQuery and Bootstrap JS for interactivity -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Smooth Scroll for Links -->
+    <script>
+      $(document).ready(function(){
+        // Smooth scrolling for navigation links
+        $('a[href^="#"]').on('click', function(event) {
+          var target = $(this.getAttribute('href'));
+          if(target.length) {
+            event.preventDefault();
+            $('html, body').stop().animate({
+              scrollTop: target.offset().top
+            }, 1000);
+          }
+        });
+      });
+    </script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
       <a class="navbar-brand" href="/">🌟 MyBlog</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,28 +50,50 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <% if logged_in? %>
-            <li class="nav-item"><%= link_to 'Nova Publicação', new_article_path, class: 'btn btn-primary ml-2' %></li>
-            <li class="nav-item"><%= link_to 'Sair', logout_path, method: :delete, class: 'btn btn-danger' %></li>
+            <li class="nav-item">
+              <%= link_to 'Nova Publicação', new_article_path, class: 'btn btn-light' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Sair', logout_path, method: :delete, class: 'btn btn-danger' %>
+            </li>
           <% else %>
-            <li class="nav-item"><%= link_to 'Entrar', login_path, class: 'nav-link' %></li>
-            <li class="nav-item"><%= link_to 'Cadastrar', new_user_path, class: 'btn btn-primary ml-2' %></li>
+            <li class="nav-item">
+              <%= link_to 'Entrar', login_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Cadastrar', new_user_path, class: 'btn btn-light' %>
+            </li>
           <% end %>
         </ul>
       </div>
     </nav>
 
-    <div class="container mt-5">
+    <!-- Main Content -->
+    <div class="container">
       <% if flash[:notice] %>
-        <div class="alert alert-success"><%= flash[:notice] %></div>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <%= flash[:notice] %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       <% elsif flash[:alert] %>
-        <div class="alert alert-danger"><%= flash[:alert] %></div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= flash[:alert] %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
       <% end %>
 
       <%= yield %>
     </div>
 
+    <!-- Footer -->
     <footer>
       <p>© <%= Time.current.year %> MyBlog. Todos os direitos reservados.</p>
+      <p>Feito com 💙 por <a href="https://github.com/Brunowrite" target="_blank">Brunowrite</a></p>
     </footer>
+
   </body>
 </html>

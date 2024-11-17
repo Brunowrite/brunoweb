@@ -4,22 +4,18 @@ class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :edit, :update, :destroy]
     before_action :authorize_user, only: [:edit, :update, :destroy]
   
-    # Ação para listar todas as publicações (acessível para todos)
+    
     def index
       @articles = Article.all
     end
   
-    # Ação para visualizar uma publicação específica (acessível para todos)
+    
     class ArticlesController < ApplicationController
       def show
         @article = Article.find(params[:id])
         @comments = @article.comments
       end
     end
-    
-    
-  
-    # Ação para criar uma nova publicação (acessível apenas para usuários autenticados)
     def new
       @article = current_user.articles.build
     end
@@ -33,7 +29,7 @@ class ArticlesController < ApplicationController
       end
     end
   
-    # Ação para editar uma publicação existente (acessível apenas para o autor)
+    
     def edit
     end
   
@@ -45,7 +41,7 @@ class ArticlesController < ApplicationController
       end
     end
   
-    # Ação para excluir uma publicação existente (acessível apenas para o autor)
+    
     def destroy
       @article.destroy
       redirect_to articles_path, notice: 'Publicação excluída com sucesso!'

@@ -1,49 +1,52 @@
-/* Geral */
+/* custom.css */
+
+/* Estilos gerais */
 body {
-    background-color: #1B1F3B;
-    color: #0c18ba;
-    font-family: 'Poppins', sans-serif;
-    margin: 0; /* Remove margens padrão do body */
-  }
-  
-  /* Navbar */
-  .navbar {
-    background: rgba(0, 0, 0, 0.7);
-    border-bottom: 2px solid #FFC857;
-  }
-  
-  /* Botões */
-  .btn-primary {
-    background-color: #FFC857;
-    border-color: #FFC857;
-    color: #1B1F3B;
-  }
-  
-  .btn-primary:hover {
-    background-color: #E63946;
-    border-color: #E63946;
-  }
-  
-  /* Garante que HTML e body ocupem toda a altura da janela */
-  html, body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 0; /* Remove margens padrão */
-  }
-  
-  /* O conteúdo principal cresce para ocupar o espaço disponível */
-  .container {
-    flex: 1; /* Permite que o conteúdo principal ocupe o espaço restante */
-  }
-  
-  /* Rodapé fixo */
-  footer {
-    background: #1B1F3B;
-    color: #C5C6C7;
-    text-align: center;
-    padding: 15px 0;
-    flex-shrink: 0; /* Garante que o rodapé não seja comprimido */
-  }
-  
-  
+  font-family: 'Poppins', sans-serif;
+  color: rgb(16, 16, 16);
+  background-color: #1c283d;
+}
+
+footer {
+  text-align: center;
+  color: white;
+  padding: 10px;
+  background-color: #233242;
+  margin-top: 10px;
+}
+
+.navbar {
+  background-color: #1f364f;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: white !important;
+}
+
+.navbar-nav .nav-item .btn {
+  margin-left: 10px;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.btn-primary, .btn-danger {
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover, .btn-danger:hover {
+  transform: scale(1.1);
+}
+
+footer p {
+  font-size: 10px;
+}
