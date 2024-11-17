@@ -1,0 +1,18 @@
+<div class="jumbotron text-center" style="background-color: #FFC857; color: #1B1F3B;">
+  <h1>Bem-vindo ao MyBlog!</h1>
+  <p>Compartilhe ideias, leia histórias e inspire-se.</p>
+</div>
+
+<div class="row">
+  <% @articles.each do |article| %>
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm" style="background-color: #F0F4FF;">
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to article.title, article, style: 'color: #1B1F3B;' %></h5>
+          <p class="card-text"><%= truncate(article.body, length: 80) %></p>
+          <small class="text-muted">Por <%= article.user.email %>, há <%= time_ago_in_words(article.created_at) %>.</small>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

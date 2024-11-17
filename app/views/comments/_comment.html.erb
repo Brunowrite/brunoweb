@@ -1,0 +1,9 @@
+<div class="bg-gray-50 p-4 mb-4 rounded-lg shadow-sm">
+  <p class="text-teal-700 font-semibold"><%= comment.user&.email || 'Usuário Anônimo' %> comentou:</p>
+  <p class="text-gray-600"><%= comment.body %></p>
+  <p class="text-sm text-gray-400"><%= comment.created_at.strftime("%d/%m/%Y %H:%M") %></p>
+
+  <% if logged_in? && (comment.user == current_user || comment.article.user == current_user) %>
+    <%= link_to 'Excluir Comentário', article_comment_path(article_id: comment.article.id, id: comment.id), data: { turbo_method: :delete, turbo_confirm: 'Tem certeza que deseja excluir este comentário?' }, class: 'text-red-500 hover:text-red-700' %>
+  <% end %>
+</div>

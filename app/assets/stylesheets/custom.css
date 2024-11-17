@@ -1,0 +1,49 @@
+/* Geral */
+body {
+    background-color: #1B1F3B;
+    color: #0c18ba;
+    font-family: 'Poppins', sans-serif;
+    margin: 0; /* Remove margens padrão do body */
+  }
+  
+  /* Navbar */
+  .navbar {
+    background: rgba(0, 0, 0, 0.7);
+    border-bottom: 2px solid #FFC857;
+  }
+  
+  /* Botões */
+  .btn-primary {
+    background-color: #FFC857;
+    border-color: #FFC857;
+    color: #1B1F3B;
+  }
+  
+  .btn-primary:hover {
+    background-color: #E63946;
+    border-color: #E63946;
+  }
+  
+  /* Garante que HTML e body ocupem toda a altura da janela */
+  html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0; /* Remove margens padrão */
+  }
+  
+  /* O conteúdo principal cresce para ocupar o espaço disponível */
+  .container {
+    flex: 1; /* Permite que o conteúdo principal ocupe o espaço restante */
+  }
+  
+  /* Rodapé fixo */
+  footer {
+    background: #1B1F3B;
+    color: #C5C6C7;
+    text-align: center;
+    padding: 15px 0;
+    flex-shrink: 0; /* Garante que o rodapé não seja comprimido */
+  }
+  
+  

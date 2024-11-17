@@ -1,0 +1,41 @@
+<div class="article-detail mb-4 p-4 bg-white rounded shadow-sm">
+  <h1 class="article-title"><%= @article.title %></h1>
+  <p class="article-body"><%= @article.body %></p>
+  <small class="text-muted">
+    Publicado por: <strong><%= @article.user.email %></strong> |
+    <%= time_ago_in_words(@article.created_at) %> atrás
+  </small>
+
+  <% if logged_in? && @article.user == current_user %>
+    <div class="mt-3 article-actions">
+      <%= link_to 'Editar', edit_article_path(@article), class: 'btn btn-secondary' %>
+      <%= form_with url: article_path(@article), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'd-inline' do %>
+        <%= submit_tag 'Excluir', class: 'btn btn-danger' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<h2 class="comments-heading mt-4">Comentários</h2>
+
+<!-- Renderiza todos os comentários do artigo -->
+<div class="comments-list">
+  <%= render @article.comments %>
+</div>
+
+<!-- Formulário para comentar (apenas se o usuário estiver logado) -->
+<% if logged_in? %>
+  <div class="comment-form-container mt-4">
+    <%= form_with(model: [@article, @article.comments.build], local: true) do |form| %>
+      <div class="form-group">
+        <%= form.label :body, "Deixe um comentário", class: "form-label" %>
+        <%= form.text_area :body, class: 'form-control comment-textarea', rows: 3, placeholder: 'Escreva algo incrível...' %>
+      </div>
+      <%= form.submit 'Comentar', class: 'comment-submit-btn btn-block' %>
+    <% end %>
+  </div>
+<% else %>
+  <p class="text-center text-warning">
+    Faça <%= link_to 'Entrar', login_path, class: 'text-primary' %> para comentar.
+  </p>
+<% end %>

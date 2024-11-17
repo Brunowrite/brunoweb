@@ -1,0 +1,17 @@
+<h1 class="text-center text-white">Editar Publicação</h1>
+
+<%= form_with model: @article, local: true do |form| %>
+  <div class="form-group">
+    <%= form.label :title, "Título", class: "text-white" %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :body, "Conteúdo", class: "text-white" %>
+    <%= form.text_area :body, class: 'form-control', rows: 5 %>
+  </div>
+
+  <%= form.submit "Atualizar", class: "btn btn-primary btn-block" %>
+<% end %>
+
+<%= link_to "Voltar", article_path(@article), class: "btn btn-secondary btn-block" %>
